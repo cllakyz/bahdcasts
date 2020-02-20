@@ -35,7 +35,7 @@
                 <div class="topbar-right">
                     <ul class="topbar-nav nav">
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="javascript:;" data-toggle="modal" data-target="#loginModal">Login</a></li>
                     </ul>
                 </div>
 

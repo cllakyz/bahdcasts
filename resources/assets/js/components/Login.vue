@@ -39,7 +39,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import axios from 'axios';
     export default {
         data() {
             return {
@@ -60,14 +60,14 @@
                 }
             },
             attemptLogin() {
-                this.errors = []
-                this.loading = true
+                this.errors = [];
+                this.loading = true;
                 axios.post('/login', {
                     email: this.email, password: this.password, remember: this.remember
                 }).then(resp => {
                     location.reload()
                 }).catch(error => {
-                    this.loading = false
+                    this.loading = false;
                     if(error.response.status === 422) {
                         this.errors.push("We couldn't verify your account details.")
                     } else {
