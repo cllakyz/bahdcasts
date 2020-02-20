@@ -1,3 +1,5 @@
 {
-    "/assets/js/app.js": "/assets/js/app.js"
+    "/assets/js/app.js": "/assets/js/app.js",
+    "/assets/js/bahdcasts.js": "/assets/js/bahdcasts.js",
+    "/assets/css/bahdcasts.css": "/assets/css/bahdcasts.css"
 }

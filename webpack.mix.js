@@ -15,3 +15,14 @@ let mix = require('laravel-mix');
    .sass('resources/assets/sass/app.scss', 'public/assets/css/app.css');*/
 
 mix.js('resources/assets/js/app.js', 'public/assets/js/app.js');
+
+mix.styles([
+    'resources/assets/css/core.min.css',
+    'resources/assets/css/thesaas.min.css',
+    'resources/assets/css/style.css',
+], 'public/assets/css/bahdcasts.css')
+    .js([
+        'resources/assets/js/core.min.js',
+        'resources/assets/js/thesaas.min.js',
+        'resources/assets/js/script.js',
+    ], 'public/assets/js/bahdcasts.js');
