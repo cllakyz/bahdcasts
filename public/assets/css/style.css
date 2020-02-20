@@ -27,6 +27,11 @@
 .thesaas-sections-split.topbar-reveal .main-content .topbar-nav {
   display: none;
 }
+/* Topbar */
+.topbar .topbar-brand{ color: white; }
+
+/* Modal */
+.card-modal .card.card-shadowed{ max-width: 100%; }
 
 @media (max-width: 768px) {
 
