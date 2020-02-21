@@ -17,8 +17,18 @@ class ConfirmEmailTest extends TestCase
 
         $user = factory(User::class)->create();
         $this->get("/register/confirm/?token={$user->confirm_token}")
-            ->assertRedirect('/');
-            //->assertSessionHas('success', 'Your email has been confirmed.');
+            ->assertRedirect('/')
+            ->assertSessionHas('success', 'Your email has been confirmed.');
         $this->assertTrue($user->fresh()->isConfirmed());
+    }
+
+    public function test_a_user_is_redirected_if_token_is_wrong()
+    {
+        $this->withoutExceptionHandling();
+
+        factory(User::class)->create();
+        $this->get("/register/confirm/?token=WRONG_TOKEN")
+            ->assertRedirect('/')
+            ->assertSessionHas('error', 'Confirmation token not recognised.');
     }
 }

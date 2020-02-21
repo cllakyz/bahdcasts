@@ -14,10 +14,14 @@ class ConfirmEmailController extends Controller
     public function index()
     {
         $token = request('token');
-        $user = User::where('confirm_token', $token)->firstOrFail();
+        $user = User::where('confirm_token', $token)->first();
         if($user){
             $user->confirm();
-            return redirect(route('index'));
+            session()->flash('success', 'Your email has been confirmed.');
         }
+        else{
+            session()->flash('error', 'Confirmation token not recognised.');
+        }
+        return redirect(route('index'));
     }
 }
