@@ -43,4 +43,9 @@ class User extends Authenticatable
         $this->confirm_token = null;
         return $this->save();
     }
+
+    public function isAdmin()
+    {
+        return in_array($this->email, config('bahdcasts.administrator'));
+    }
 }

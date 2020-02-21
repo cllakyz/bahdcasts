@@ -26,6 +26,6 @@ Route::get('register/confirm', 'ConfirmEmailController@index')->name('confirm-em
 
 Route::get('home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'], function (){
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::resource('series', 'SeriesController');
 });
