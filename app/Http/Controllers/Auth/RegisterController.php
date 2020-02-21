@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\ConfirmYourEmail;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -80,6 +82,7 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+        Mail::to($user)->send(new ConfirmYourEmail($user));
         return redirect($this->redirectPath());
     }
 }
