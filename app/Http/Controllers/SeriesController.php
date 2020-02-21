@@ -44,11 +44,11 @@ class SeriesController extends Controller
      * Display the specified resource.
      *
      * @param Series $series
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Series $series)
     {
-        dd($series);
+        return view('admin.series.show', compact('series'));
     }
 
     /**
