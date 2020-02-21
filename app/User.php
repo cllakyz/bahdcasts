@@ -27,8 +27,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @return bool
+     */
     public function isConfirmed()
     {
         return $this->confirm_token == null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function confirm()
+    {
+        $this->confirm_token = null;
+        return $this->save();
     }
 }

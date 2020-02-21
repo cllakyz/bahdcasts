@@ -22,4 +22,6 @@ Route::get('logout', function () {
 
 Auth::routes();
 
+Route::get('register/confirm', 'ConfirmEmailController@index')->name('confirm-email');
+
 Route::get('home', 'HomeController@index')->name('home');
