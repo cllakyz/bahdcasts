@@ -37,20 +37,18 @@ class SeriesController extends Controller
      */
     public function store(CreateSeriesRequest $request)
     {
-        $request->uploadSeriesImage()->storeSeries();
-        session()->flash('success', 'Series created successfully.');
-        return redirect()->back();
+        return $request->uploadSeriesImage()->storeSeries();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Series $series
+     * @return void
      */
-    public function show($id)
+    public function show(Series $series)
     {
-        //
+        dd($series);
     }
 
     /**

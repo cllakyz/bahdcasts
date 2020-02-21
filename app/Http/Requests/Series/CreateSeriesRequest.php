@@ -39,13 +39,19 @@ class CreateSeriesRequest extends FormRequest
         return $this;
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function storeSeries()
     {
-        Series::create([
+        $series = Series::create([
             'title'         => $this->title,
             'slug'          => str_slug($this->title),
             'image_url'     => 'series/'.$this->fileName,
             'description'   => $this->description,
         ]);
+
+        session()->flash('success', 'Series created successfully.');
+        return redirect(route('series.show', $series->slug));
     }
 }
