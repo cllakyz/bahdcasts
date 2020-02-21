@@ -38,11 +38,13 @@ class SeriesController extends Controller
     public function store(CreateSeriesRequest $request)
     {
         $slug = str_slug($request->title);
-        $image = $request->image->storePubliclyAs('series', $slug);
+        $uploadedImage = $request->image;
+        $fileName = $slug.".".$uploadedImage->getClientOriginalExtension();
+        $uploadedImage->storePubliclyAs('series', $fileName);
         Series::create([
             'title'         => $request->title,
             'slug'          => $slug,
-            'image'         => 'image_url',
+            'image_url'     => 'series/'.$fileName,
             'description'   => $request->description,
         ]);
 
