@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use Config;
-use Storage;
-use Bahdcasts\User;
+use Illuminate\Support\Facades\Storage;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;

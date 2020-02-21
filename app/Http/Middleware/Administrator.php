@@ -19,9 +19,11 @@ class Administrator
             if(auth()->user()->isAdmin()){
                 return $next($request);
             } else{
+                session()->flash('error', 'You are not authorized to perform this action');
                 return redirect('/');
             }
         } else{
+            session()->flash('error', 'You are not authorized to perform this action');
             return redirect('/');
         }
     }
