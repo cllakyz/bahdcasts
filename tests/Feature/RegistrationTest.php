@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Mail\ConfirmYourEmail;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,6 +28,24 @@ class RegistrationTest extends TestCase
         $this->assertDatabaseHas('users', [
             'username' => str_slug('celal akyüz')
         ]);
+    }
+
+    public function test_a_user_has_a_token_after_registration()
+    {
+        Mail::fake();
+
+        $this->withoutExceptionHandling();
+
+        $this->post('/register', [
+            'name' => 'celal akyüz',
+            'email' => 'celal@akyuz.com',
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ])->assertRedirect();
+
+        $user = User::find(1);
+        $this->assertNotNull($user->confirm_token);
+        $this->assertFalse($user->isConfirmed());
     }
 
     public function test_an_email_is_sent_to_newly_registered_users()
