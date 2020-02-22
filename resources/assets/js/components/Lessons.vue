@@ -5,14 +5,16 @@
                 Create New Lesson
             </button>
         </h1>
-        <ul class="list-group d-flex">
-            <li class="list-group-item d-flex justify-content-between" v-for="lesson, key in lessons">
-                <p>{{ lesson.title }}</p>
-                <p>
+        <div>
+            <ul class="list-group d-flex">
+                <li class="list-group-item d-flex justify-content-between" v-for="lesson, key in lessons">
+                    <p>{{ lesson.title }}</p>
+                    <p>
 
-                </p>
-            </li>
-        </ul>
+                    </p>
+                </li>
+            </ul>
+        </div>
         <create-lesson></create-lesson>
     </div>
 </template>
@@ -20,7 +22,7 @@
 <script>
     export default {
         name: "Lessons",
-        props: ['default_lessons'],
+        props: ['default_lessons', 'series_id'],
         data() {
             return {
                 lessons: JSON.parse(this.default_lessons)
@@ -31,7 +33,7 @@
         },
         methods: {
             createNewLesson(){
-                this.$emit('create_new_lesson');
+                this.$emit('create_new_lesson', this.series_id);
             }
         }
     }

@@ -404,6 +404,12 @@ module.exports = g;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(20);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -501,7 +507,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -608,12 +614,6 @@ module.exports = function normalizeComponent (
   }
 }
 
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(20);
 
 /***/ }),
 /* 5 */
@@ -1443,7 +1443,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(4);
+window.axios = __webpack_require__(2);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -31827,7 +31827,7 @@ if (typeof jQuery === 'undefined') {
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(5);
 var Axios = __webpack_require__(22);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -31910,7 +31910,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(31);
 var dispatchRequest = __webpack_require__(32);
@@ -32451,7 +32451,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(33);
 var isCancel = __webpack_require__(9);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var isAbsoluteURL = __webpack_require__(34);
 var combineURLs = __webpack_require__(35);
 
@@ -44947,7 +44947,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(43)
 /* template */
@@ -44995,7 +44995,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
@@ -45299,7 +45299,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(46)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(49)
 /* template */
@@ -45439,10 +45439,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Lessons",
-    props: ['default_lessons'],
+    props: ['default_lessons', 'series_id'],
     data: function data() {
         return {
             lessons: JSON.parse(this.default_lessons)
@@ -45454,7 +45456,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         createNewLesson: function createNewLesson() {
-            this.$emit('create_new_lesson');
+            this.$emit('create_new_lesson', this.series_id);
         }
     }
 });
@@ -45468,7 +45470,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(51)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(53)
 /* template */
@@ -45545,7 +45547,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45556,9 +45558,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
 //
 //
 //
@@ -45598,18 +45599,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "CreateLesson",
     mounted: function mounted() {
-        this.$parent.$on('create_new_lesson', function () {
+        var _this = this;
+
+        this.$parent.$on('create_new_lesson', function (seriesId) {
             console.log('hello parent, we are creating a lesson.');
-            $('#createLesson').modal();
+            _this.seriesId = seriesId;
+            $('#createLesson').modal('show');
         });
     },
     data: function data() {
         return {
+            seriesId: '',
             title: '',
             video_id: '',
             episode_number: '',
             description: ''
         };
+    },
+
+    methods: {
+        createLesson: function createLesson() {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('admin/' + this.seriesId + '/lessons', {
+                title: this.title,
+                video_id: this.video_id,
+                episode_number: this.episode_number,
+                description: this.description
+            }).then(function (resp) {
+                console.log(resp);
+            }).catch(function (resp) {
+                console.log(resp);
+            });
+        }
     }
 });
 
@@ -45645,19 +45665,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.lesson.title,
-                    expression: "lesson.title"
+                    value: _vm.title,
+                    expression: "title"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text", placeholder: "Lesson title" },
-                domProps: { value: _vm.lesson.title },
+                domProps: { value: _vm.title },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.lesson, "title", $event.target.value)
+                    _vm.title = $event.target.value
                   }
                 }
               })
@@ -45669,19 +45689,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.lesson.video_id,
-                    expression: "lesson.video_id"
+                    value: _vm.video_id,
+                    expression: "video_id"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text", placeholder: "Vimeo video id" },
-                domProps: { value: _vm.lesson.video_id },
+                domProps: { value: _vm.video_id },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.lesson, "video_id", $event.target.value)
+                    _vm.video_id = $event.target.value
                   }
                 }
               })
@@ -45693,19 +45713,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.lesson.episode_number,
-                    expression: "lesson.episode_number"
+                    value: _vm.episode_number,
+                    expression: "episode_number"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "number", placeholder: "Episode number" },
-                domProps: { value: _vm.lesson.episode_number },
+                domProps: { value: _vm.episode_number },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.lesson, "episode_number", $event.target.value)
+                    _vm.episode_number = $event.target.value
                   }
                 }
               })
@@ -45717,19 +45737,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.lesson.description,
-                    expression: "lesson.description"
+                    value: _vm.description,
+                    expression: "description"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { cols: "5", rows: "5" },
-                domProps: { value: _vm.lesson.description },
+                domProps: { value: _vm.description },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.lesson, "description", $event.target.value)
+                    _vm.description = $event.target.value
                   }
                 }
               })
@@ -45746,33 +45766,19 @@ var render = function() {
               [_vm._v("Close")]
             ),
             _vm._v(" "),
-            _vm.editing
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.updateLesson()
-                      }
-                    }
-                  },
-                  [_vm._v("Save lesson")]
-                )
-              : _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.createLesson()
-                      }
-                    }
-                  },
-                  [_vm._v("Create lesson")]
-                )
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.createLesson()
+                  }
+                }
+              },
+              [_vm._v("Create lesson")]
+            )
           ])
         ])
       ])
@@ -45842,18 +45848,20 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "list-group d-flex" },
-        _vm._l(_vm.lessons, function(lesson, key) {
-          return _c(
-            "li",
-            { staticClass: "list-group-item d-flex justify-content-between" },
-            [_c("p", [_vm._v(_vm._s(lesson.title))]), _vm._v(" "), _c("p")]
-          )
-        }),
-        0
-      ),
+      _c("div", [
+        _c(
+          "ul",
+          { staticClass: "list-group d-flex" },
+          _vm._l(_vm.lessons, function(lesson, key) {
+            return _c(
+              "li",
+              { staticClass: "list-group-item d-flex justify-content-between" },
+              [_c("p", [_vm._v(_vm._s(lesson.title))]), _vm._v(" "), _c("p")]
+            )
+          }),
+          0
+        )
+      ]),
       _vm._v(" "),
       _c("create-lesson")
     ],

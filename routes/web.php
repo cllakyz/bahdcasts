@@ -28,4 +28,5 @@ Route::get('home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::resource('series', 'SeriesController');
+    Route::resource('{series_by_id}/lessons', 'LessonsController');
 });

@@ -10,23 +10,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Lesson title" v-model="lesson.title">
+                        <input type="text" class="form-control" placeholder="Lesson title" v-model="title">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Vimeo video id" v-model="lesson.video_id">
+                        <input type="text" class="form-control" placeholder="Vimeo video id" v-model="video_id">
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Episode number" v-model="lesson.episode_number">
+                        <input type="number" class="form-control" placeholder="Episode number" v-model="episode_number">
                     </div>
 
                     <div class="form-group">
-                        <textarea cols="5" rows="5" class="form-control" v-model="lesson.description"></textarea>
+                        <textarea cols="5" rows="5" class="form-control" v-model="description"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" @click="updateLesson()" v-if="editing">Save lesson</button>
-                    <button type="button" class="btn btn-primary" @click="createLesson()" v-else>Create lesson</button>
+                    <button type="button" class="btn btn-primary" @click="createLesson()">Create lesson</button>
                 </div>
             </div>
         </div>
@@ -38,17 +37,35 @@
     export default {
         name: "CreateLesson",
         mounted() {
-            this.$parent.$on('create_new_lesson', () => {
+            this.$parent.$on('create_new_lesson', (seriesId) => {
                 console.log('hello parent, we are creating a lesson.');
-                $('#createLesson').modal();
+                this.seriesId = seriesId;
+                $('#createLesson').modal('show');
             });
         },
         data(){
             return {
+                seriesId: '',
                 title: '',
                 video_id: '',
                 episode_number: '',
                 description: '',
+            }
+        },
+        methods: {
+            createLesson(){
+                axios.post(`admin/${this.seriesId}/lessons`, {
+                    title: this.title,
+                    video_id: this.video_id,
+                    episode_number: this.episode_number,
+                    description: this.description,
+                })
+                    .then(resp => {
+                        console.log(resp);
+                    })
+                    .catch(resp => {
+                        console.log(resp);
+                    });
             }
         }
     }
