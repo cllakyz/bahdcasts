@@ -45455,8 +45455,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         "create-lesson": __webpack_require__(50)
     },
     methods: {
-        createNewLesson: function createNewLesson() {
-            this.$emit('create_new_lesson', this.series_id);
+        createNewLesson: function createNewLesson(thisBtn) {
+            this.$emit('create_new_lesson', thisBtn, this.series_id);
         }
     }
 });
@@ -45547,7 +45547,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.modal-title[data-v-e61a6006]{ color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -45601,10 +45601,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.$parent.$on('create_new_lesson', function (seriesId) {
+        this.$parent.$on('create_new_lesson', function (thisBtn, seriesId) {
             console.log('hello parent, we are creating a lesson.');
             _this.seriesId = seriesId;
-            $('#createLesson').modal('show');
+            console.log(seriesId);
+            $(thisBtn).click();
         });
     },
     data: function data() {
@@ -45838,9 +45839,10 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-primary",
+            attrs: { "data-toggle": "modal", "data-target": "#createLesson" },
             on: {
               click: function($event) {
-                return _vm.createNewLesson()
+                return _vm.createNewLesson(this)
               }
             }
           },

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1 class="text-center">
-            <button class="btn btn-primary" @click="createNewLesson()">
+            <button class="btn btn-primary" @click="createNewLesson(this)" data-toggle="modal" data-target="#createLesson">
                 Create New Lesson
             </button>
         </h1>
@@ -32,8 +32,8 @@
             "create-lesson": require('./children/CreateLesson.vue')
         },
         methods: {
-            createNewLesson(){
-                this.$emit('create_new_lesson', this.series_id);
+            createNewLesson(thisBtn){
+                this.$emit('create_new_lesson', thisBtn, this.series_id);
             }
         }
     }

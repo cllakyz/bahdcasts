@@ -31,8 +31,9 @@ class LessonsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Series $series
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function store(Series $series, Request $request)
     {

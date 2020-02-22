@@ -37,10 +37,11 @@
     export default {
         name: "CreateLesson",
         mounted() {
-            this.$parent.$on('create_new_lesson', (seriesId) => {
+            this.$parent.$on('create_new_lesson', (thisBtn, seriesId) => {
                 console.log('hello parent, we are creating a lesson.');
                 this.seriesId = seriesId;
-                $('#createLesson').modal('show');
+                console.log(seriesId);
+                $(thisBtn).click();
             });
         },
         data(){
@@ -72,5 +73,5 @@
 </script>
 
 <style scoped>
-
+.modal-title{ color: black; }
 </style>
