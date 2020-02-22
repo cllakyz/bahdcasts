@@ -45545,7 +45545,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45556,9 +45556,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -45595,6 +45594,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "CreateLesson",
     mounted: function mounted() {
@@ -45602,6 +45602,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('hello parent, we are creating a lesson.');
             $('#createLesson').modal();
         });
+    },
+    data: function data() {
+        return {
+            title: '',
+            video_id: '',
+            episode_number: '',
+            description: ''
+        };
     }
 });
 
@@ -45714,7 +45722,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { cols: "30", rows: "10" },
+                attrs: { cols: "5", rows: "5" },
                 domProps: { value: _vm.lesson.description },
                 on: {
                   input: function($event) {
@@ -45725,52 +45733,6 @@ var render = function() {
                   }
                 }
               })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.lesson.premium,
-                    expression: "lesson.premium"
-                  }
-                ],
-                attrs: { type: "checkbox" },
-                domProps: {
-                  checked: Array.isArray(_vm.lesson.premium)
-                    ? _vm._i(_vm.lesson.premium, null) > -1
-                    : _vm.lesson.premium
-                },
-                on: {
-                  change: function($event) {
-                    var $$a = _vm.lesson.premium,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 &&
-                          _vm.$set(_vm.lesson, "premium", $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          _vm.$set(
-                            _vm.lesson,
-                            "premium",
-                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                          )
-                      }
-                    } else {
-                      _vm.$set(_vm.lesson, "premium", $$c)
-                    }
-                  }
-                }
-              }),
-              _vm._v(
-                " Premium: " + _vm._s(_vm.lesson.premium) + "\n                "
-              )
             ])
           ]),
           _vm._v(" "),

@@ -20,10 +20,7 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea cols="30" rows="10" class="form-control" v-model="lesson.description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" v-model="lesson.premium"> Premium: {{ lesson.premium }}
+                        <textarea cols="5" rows="5" class="form-control" v-model="lesson.description"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -37,6 +34,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         name: "CreateLesson",
         mounted() {
@@ -44,6 +42,14 @@
                 console.log('hello parent, we are creating a lesson.');
                 $('#createLesson').modal();
             });
+        },
+        data(){
+            return {
+                title: '',
+                video_id: '',
+                episode_number: '',
+                description: '',
+            }
         }
     }
 </script>
