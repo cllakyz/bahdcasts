@@ -1,0 +1,42 @@
+<template>
+    <div class="container">
+        <h1 class="text-center">
+            <button class="btn btn-primary" @click="createNewLesson()">
+                Create New Lesson
+            </button>
+        </h1>
+        <ul class="list-group d-flex">
+            <li class="list-group-item d-flex justify-content-between" v-for="lesson, key in lessons">
+                <p>{{ lesson.title }}</p>
+                <p>
+
+                </p>
+            </li>
+        </ul>
+        <create-lesson></create-lesson>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "Lessons",
+        props: ['default_lessons'],
+        data() {
+            return {
+                lessons: JSON.parse(this.default_lessons)
+            }
+        },
+        components: {
+            "create-lesson": require('./children/CreateLesson.vue')
+        },
+        methods: {
+            createNewLesson(){
+                this.$emit('create_new_lesson');
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .container{ color: black; font-weight: bold; }
+</style>
