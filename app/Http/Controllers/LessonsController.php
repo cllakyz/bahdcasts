@@ -37,7 +37,9 @@ class LessonsController extends Controller
      */
     public function store(Series $series, Request $request)
     {
-        return $series->lessons()->create($request->all());
+        $data = $request->all();
+        $data['slug'] = str_slug($data['title']);
+        return $series->lessons()->create($data);
     }
 
     /**

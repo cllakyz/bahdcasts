@@ -45620,7 +45620,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         createLesson: function createLesson() {
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('admin/' + this.seriesId + '/lessons', {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/admin/' + this.seriesId + '/lessons', {
                 title: this.title,
                 video_id: this.video_id,
                 episode_number: this.episode_number,
