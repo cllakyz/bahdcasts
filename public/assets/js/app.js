@@ -1446,6 +1446,7 @@ try {
 window.axios = __webpack_require__(2);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.baseURL = "http://dev.bahdcasts.com/";
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -45064,7 +45065,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.errors = [];
             this.loading = true;
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/login', {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('login', {
                 email: this.email, password: this.password, remember: this.remember
             }).then(function (resp) {
                 location.reload();
@@ -45620,7 +45621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         createLesson: function createLesson() {
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/admin/' + this.seriesId + '/lessons', {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('admin/' + this.seriesId + '/lessons', {
                 title: this.title,
                 video_id: this.video_id,
                 episode_number: this.episode_number,

@@ -62,7 +62,7 @@
             attemptLogin() {
                 this.errors = [];
                 this.loading = true;
-                axios.post('/login', {
+                axios.post('login', {
                     email: this.email, password: this.password, remember: this.remember
                 }).then(resp => {
                     location.reload()

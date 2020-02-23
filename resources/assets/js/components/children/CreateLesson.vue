@@ -55,7 +55,7 @@
         },
         methods: {
             createLesson(){
-                axios.post(`/admin/${this.seriesId}/lessons`, {
+                axios.post(`admin/${this.seriesId}/lessons`, {
                     title: this.title,
                     video_id: this.video_id,
                     episode_number: this.episode_number,
