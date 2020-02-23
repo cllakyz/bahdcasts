@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Lessons\CreateLessonsRequest;
+use App\Http\Requests\Lessons\UpdateLessonsRequest;
 use App\Lesson;
 use App\Series;
 use Illuminate\Http\Request;
@@ -69,13 +70,17 @@ class LessonsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Series $series
+     * @param Lesson $lesson
+     * @param UpdateLessonsRequest $request
+     * @return Lesson
      */
-    public function update(Request $request, $id)
+    public function update(Series $series, Lesson $lesson, UpdateLessonsRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = str_slug($data['title']);
+        $lesson->update($data);
+        return $lesson->fresh();
     }
 
     /**

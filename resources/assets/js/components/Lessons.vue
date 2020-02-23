@@ -52,11 +52,22 @@
                             console.log(resp);
                         });
                 }
+            },
+            editLesson(lesson){
+                this.$emit('edit_lesson', lesson);
             }
         },
         mounted() {
             this.$on('lesson_created', (lesson) => {
                 this.lessons.push(lesson);
+            });
+
+            this.$on('lesson_updated', (lesson) => {
+                let lessonIndex = this.lessons.findIndex(l => {
+                    return lesson.id === l.id;
+                });
+
+                this.lessons.splice(lessonIndex, 1, lesson);
             });
         }
     }
