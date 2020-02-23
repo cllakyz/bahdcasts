@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary btn-close-modal" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" @click="createLesson()">Create lesson</button>
                 </div>
             </div>
@@ -37,11 +37,10 @@
     export default {
         name: "CreateLesson",
         mounted() {
-            this.$parent.$on('create_new_lesson', (thisBtn, seriesId) => {
-                console.log('hello parent, we are creating a lesson.');
+            this.$parent.$on('create_new_lesson', (seriesId) => {
                 this.seriesId = seriesId;
-                console.log(seriesId);
-                $(thisBtn).click();
+                $('#createLesson').modal('show');
+
             });
         },
         data(){
@@ -61,12 +60,13 @@
                     episode_number: this.episode_number,
                     description: this.description,
                 })
-                    .then(resp => {
-                        console.log(resp);
-                    })
-                    .catch(resp => {
-                        console.log(resp);
-                    });
+                .then(resp => {
+                    this.$parent.$emit('lesson_created', resp.data);
+                    $('.btn-close-modal').click();
+                })
+                .catch(resp => {
+                    console.log(resp);
+                });
             }
         }
     }
