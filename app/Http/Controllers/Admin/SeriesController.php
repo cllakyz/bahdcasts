@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Series\CreateSeriesRequest;
 use App\Http\Requests\Series\UpdateSeriesRequest;
