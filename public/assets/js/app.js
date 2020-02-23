@@ -1408,7 +1408,21 @@ window.Vue = __webpack_require__(36);
 window.events = new Vue();
 
 window.noty = function (notification) {
-  window.events.$emit('notification', notification);
+    window.events.$emit('notification', notification);
+};
+
+window.handleErrors = function (error) {
+    if (error.response.status === 422) {
+        window.noty({
+            message: 'You had validation errors. Please try again.',
+            type: 'danger'
+        });
+    }
+
+    window.noty({
+        message: 'Something went wrong. Please refresh the page.',
+        type: 'danger'
+    });
 };
 
 /**
@@ -1422,7 +1436,7 @@ Vue.component('vue-login', __webpack_require__(40));
 Vue.component('vue-lessons', __webpack_require__(43));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
 
 /***/ }),
@@ -32296,8 +32310,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         type: 'success'
                     });
                     _this.lessons.splice(key, 1);
-                }).catch(function (resp) {
-                    console.log(resp);
+                }).catch(function (error) {
+                    window.handleErrors(error);
                 });
             }
         },
@@ -32309,19 +32323,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var _this2 = this;
 
         this.$on('lesson_created', function (lesson) {
-            window.noty({
-                message: 'Lesson created successfully',
-                type: 'success'
-            });
             _this2.lessons.push(lesson);
         });
 
         this.$on('lesson_updated', function (lesson) {
-            window.noty({
-                message: 'Lesson updated successfully',
-                type: 'success'
-            });
-
             var lessonIndex = _this2.lessons.findIndex(function (l) {
                 return lesson.id === l.id;
             });
@@ -32512,20 +32517,28 @@ var Lesson = function Lesson(lesson) {
             var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('admin/' + this.seriesId + '/lessons', this.lesson).then(function (resp) {
+                window.noty({
+                    message: 'Lesson created successfully',
+                    type: 'success'
+                });
                 _this2.$parent.$emit('lesson_created', resp.data);
                 $('#createLesson').modal('hide');
-            }).catch(function (resp) {
-                console.log(resp);
+            }).catch(function (error) {
+                window.handleErrors(error);
             });
         },
         updateLesson: function updateLesson() {
             var _this3 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('admin/' + this.seriesId + '/lessons/' + this.lesson.slug, this.lesson).then(function (resp) {
+                window.noty({
+                    message: 'Lesson updated successfully',
+                    type: 'success'
+                });
                 _this3.$parent.$emit('lesson_updated', resp.data);
                 $('#createLesson').modal('hide');
-            }).catch(function (resp) {
-                console.log(resp);
+            }).catch(function (error) {
+                window.handleErrors(error);
             });
         }
     }

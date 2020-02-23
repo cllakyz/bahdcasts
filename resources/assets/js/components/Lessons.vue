@@ -52,8 +52,8 @@
                             });
                             this.lessons.splice(key, 1);
                         })
-                        .catch(resp => {
-                            console.log(resp);
+                        .catch(error => {
+                            window.handleErrors(error)
                         });
                 }
             },
@@ -63,19 +63,10 @@
         },
         mounted() {
             this.$on('lesson_created', (lesson) => {
-                window.noty({
-                    message: 'Lesson created successfully',
-                    type: 'success'
-                });
                 this.lessons.push(lesson);
             });
 
             this.$on('lesson_updated', (lesson) => {
-                window.noty({
-                    message: 'Lesson updated successfully',
-                    type: 'success'
-                });
-
                 let lessonIndex = this.lessons.findIndex(l => {
                     return lesson.id === l.id;
                 });

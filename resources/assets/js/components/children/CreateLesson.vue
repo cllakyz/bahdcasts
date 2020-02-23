@@ -76,21 +76,29 @@
             createLesson(){
                 axios.post(`admin/${this.seriesId}/lessons`, this.lesson)
                     .then(resp => {
+                        window.noty({
+                            message: 'Lesson created successfully',
+                            type: 'success'
+                        });
                         this.$parent.$emit('lesson_created', resp.data);
                         $('#createLesson').modal('hide');
                     })
-                    .catch(resp => {
-                        console.log(resp);
+                    .catch(error => {
+                        window.handleErrors(error);
                     });
             },
             updateLesson(){
                 axios.put(`admin/${this.seriesId}/lessons/${this.lesson.slug}`, this.lesson)
                     .then(resp => {
+                        window.noty({
+                            message: 'Lesson updated successfully',
+                            type: 'success'
+                        });
                         this.$parent.$emit('lesson_updated', resp.data);
                         $('#createLesson').modal('hide');
                     })
-                    .catch(resp => {
-                        console.log(resp);
+                    .catch(error => {
+                        window.handleErrors(error);
                     });
             }
         }
