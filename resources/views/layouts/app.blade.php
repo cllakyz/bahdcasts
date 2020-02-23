@@ -36,7 +36,9 @@
                     <ul class="topbar-nav nav">
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
                         @auth
-                            Hey {{ auth()->user()->name }}
+                            <li class="nav-item"><a class="nav-link" href="{{ route('series.index') }}">All Series</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('series.create') }}">Create Series</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Hey {{ auth()->user()->name }}</a></li>
                         @else
                             <li class="nav-item"><a class="nav-link" href="javascript:;" data-toggle="modal" data-target="#loginModal">Login</a></li>
                         @endauth

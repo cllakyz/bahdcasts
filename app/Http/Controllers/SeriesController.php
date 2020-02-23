@@ -12,11 +12,12 @@ class SeriesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $series = Series::all();
+        return view('admin.series.index', compact('series'));
     }
 
     /**
