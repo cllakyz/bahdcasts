@@ -57,6 +57,7 @@
         </main>
         <!-- END Main container -->
 
+        <vue-noty></vue-noty>
         @guest
             <vue-login></vue-login>
         @endguest

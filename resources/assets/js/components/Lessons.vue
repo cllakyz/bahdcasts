@@ -46,6 +46,10 @@
                 if(confirm('Are you sure wanna delete?')){
                     axios.delete(`admin/${this.series_id}/lessons/${slug}`)
                         .then(resp => {
+                            window.noty({
+                                message: 'Lesson deleted successfully',
+                                type: 'success'
+                            });
                             this.lessons.splice(key, 1);
                         })
                         .catch(resp => {
@@ -59,10 +63,19 @@
         },
         mounted() {
             this.$on('lesson_created', (lesson) => {
+                window.noty({
+                    message: 'Lesson created successfully',
+                    type: 'success'
+                });
                 this.lessons.push(lesson);
             });
 
             this.$on('lesson_updated', (lesson) => {
+                window.noty({
+                    message: 'Lesson updated successfully',
+                    type: 'success'
+                });
+
                 let lessonIndex = this.lessons.findIndex(l => {
                     return lesson.id === l.id;
                 });

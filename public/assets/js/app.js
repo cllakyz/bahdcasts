@@ -1405,12 +1405,19 @@ __webpack_require__(15);
 
 window.Vue = __webpack_require__(36);
 
+window.events = new Vue();
+
+window.noty = function (notification) {
+  window.events.$emit('notification', notification);
+};
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('vue-noty', __webpack_require__(54));
 Vue.component('vue-login', __webpack_require__(40));
 Vue.component('vue-lessons', __webpack_require__(43));
 
@@ -32284,6 +32291,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             console.log(slug, typeof slug === 'undefined' ? 'undefined' : _typeof(slug));
             if (confirm('Are you sure wanna delete?')) {
                 axios.delete('admin/' + this.series_id + '/lessons/' + slug).then(function (resp) {
+                    window.noty({
+                        message: 'Lesson deleted successfully',
+                        type: 'success'
+                    });
                     _this.lessons.splice(key, 1);
                 }).catch(function (resp) {
                     console.log(resp);
@@ -32298,10 +32309,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var _this2 = this;
 
         this.$on('lesson_created', function (lesson) {
+            window.noty({
+                message: 'Lesson created successfully',
+                type: 'success'
+            });
             _this2.lessons.push(lesson);
         });
 
         this.$on('lesson_updated', function (lesson) {
+            window.noty({
+                message: 'Lesson updated successfully',
+                type: 'success'
+            });
+
             var lessonIndex = _this2.lessons.findIndex(function (l) {
                 return lesson.id === l.id;
             });
@@ -32806,6 +32826,174 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-69a580d4", module.exports)
+  }
+}
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(55)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(57)
+/* template */
+var __vue_template__ = __webpack_require__(58)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-48ceddbd"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Noty.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-48ceddbd", Component.options)
+  } else {
+    hotAPI.reload("data-v-48ceddbd", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(56);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(12)("1da63360", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-48ceddbd\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Noty.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-48ceddbd\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Noty.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.alert-noty[data-v-48ceddbd]{ position: fixed; right: 20px; bottom: 40px; z-index: 1;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "Noty",
+    data: function data() {
+        return {
+            notification: {}
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        window.events.$on('notification', function (payload) {
+            _this.notification = payload;
+            setTimeout(function () {
+                _this.notification = {};
+            }, 2000);
+        });
+    },
+
+    computed: {
+        type: function type() {
+            return "alert-" + this.notification.type;
+        }
+    }
+});
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.notification.message,
+          expression: "notification.message"
+        }
+      ],
+      staticClass: "alert alert-noty",
+      class: _vm.type
+    },
+    [
+      _c("p", { staticClass: "text-center" }, [
+        _vm._v(_vm._s(_vm.notification.message))
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-48ceddbd", module.exports)
   }
 }
 
