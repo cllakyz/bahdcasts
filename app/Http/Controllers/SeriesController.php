@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Series\CreateSeriesRequest;
+use App\Http\Requests\Series\UpdateSeriesRequest;
 use App\Series;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SeriesController extends Controller
@@ -55,24 +55,34 @@ class SeriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Series $series
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Series $series)
     {
-        //
+        return view('admin.series.edit', compact('series'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateSeriesRequest $request
+     * @param Series $series
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSeriesRequest $request, Series $series)
     {
-        //
+        if($request->hasFile('image')){
+            $series->image_url = $request->uploadSeriesImage()->fileName;
+        }
+        $series->title = $request->title;
+        $series->slug = str_slug($request->title);
+        $series->description = $request->description;
+
+        $series->save();
+
+        session()->flash('success', 'Series updated successfully.');
+        return redirect(route('series.index'));
     }
 
     /**
