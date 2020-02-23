@@ -10,7 +10,12 @@
                 <li class="list-group-item d-flex justify-content-between" v-for="lesson, key in lessons">
                     <p>{{ lesson.title }}</p>
                     <p>
-
+                        <button class="btn btn-primary btn-xs" @click="editLesson(lesson)">
+                            Edit
+                        </button>
+                        <button class="btn btn-danger btn-xs" @click="deleteLesson(lesson.slug, key)">
+                            Delete
+                        </button>
                     </p>
                 </li>
             </ul>
@@ -20,6 +25,7 @@
 </template>
 
 <script>
+    import axis from 'axios';
     export default {
         name: "Lessons",
         props: ['default_lessons', 'series_id'],
@@ -34,6 +40,18 @@
         methods: {
             createNewLesson(){
                 this.$emit('create_new_lesson', this.series_id);
+            },
+            deleteLesson(slug, key){
+                console.log(slug, typeof slug);
+                if(confirm('Are you sure wanna delete?')){
+                    axios.delete(`admin/${this.series_id}/lessons/${slug}`)
+                        .then(resp => {
+                            this.lessons.splice(key, 1);
+                        })
+                        .catch(resp => {
+                            console.log(resp);
+                        });
+                }
             }
         },
         mounted() {

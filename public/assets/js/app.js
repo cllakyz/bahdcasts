@@ -32230,6 +32230,10 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 //
 //
 //
@@ -32251,6 +32255,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Lessons",
@@ -32267,13 +32277,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         createNewLesson: function createNewLesson() {
             this.$emit('create_new_lesson', this.series_id);
+        },
+        deleteLesson: function deleteLesson(slug, key) {
+            var _this = this;
+
+            console.log(slug, typeof slug === 'undefined' ? 'undefined' : _typeof(slug));
+            if (confirm('Are you sure wanna delete?')) {
+                axios.delete('admin/' + this.series_id + '/lessons/' + slug).then(function (resp) {
+                    _this.lessons.splice(key, 1);
+                }).catch(function (resp) {
+                    console.log(resp);
+                });
+            }
         }
     },
     mounted: function mounted() {
-        var _this = this;
+        var _this2 = this;
 
         this.$on('lesson_created', function (lesson) {
-            _this.lessons.push(lesson);
+            _this2.lessons.push(lesson);
         });
     }
 });
@@ -32676,7 +32698,45 @@ var render = function() {
             return _c(
               "li",
               { staticClass: "list-group-item d-flex justify-content-between" },
-              [_c("p", [_vm._v(_vm._s(lesson.title))]), _vm._v(" "), _c("p")]
+              [
+                _c("p", [_vm._v(_vm._s(lesson.title))]),
+                _vm._v(" "),
+                _c("p", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-xs",
+                      on: {
+                        click: function($event) {
+                          return _vm.editLesson(lesson)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Edit\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-xs",
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteLesson(lesson.slug, key)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Delete\n                    "
+                      )
+                    ]
+                  )
+                ])
+              ]
             )
           }),
           0
