@@ -23,7 +23,7 @@
 
             <div class="row gap-y text-center">
                 <div class="col-12">
-
+                    <vue-player></vue-player>
                 </div>
             </div>
         </div>
