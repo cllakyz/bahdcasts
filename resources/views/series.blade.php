@@ -11,12 +11,12 @@
                     <br><br><br>
                     @auth
                         @hasStartedSeries($series)
-                        <a href="" class="btn btn-lg btn-primary mr-16 btn-round">CONTINUE LEARNING</a>
+                        <a href="{{ route('series.learning', $series->slug) }}" class="btn btn-lg btn-primary mr-16 btn-round">CONTINUE LEARNING</a>
                         @else
-                        <a href="" class="btn btn-lg btn-primary mr-16 btn-round">START LEARNING</a>
+                        <a href="{{ route('series.learning', $series->slug) }}" class="btn btn-lg btn-primary mr-16 btn-round">START LEARNING</a>
                         @endhasStartedSeries
                     @else
-                        <a href=""  class="btn btn-lg btn-primary mr-16 btn-round">START LEARNING</a>
+                        <a href="{{ route('series.learning', $series->slug) }}"  class="btn btn-lg btn-primary mr-16 btn-round">START LEARNING</a>
                     @endauth
                 </div>
                 <div class="col-12 align-self-end text-center">
