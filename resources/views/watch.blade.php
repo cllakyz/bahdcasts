@@ -26,7 +26,11 @@
             @endphp
             <div class="row gap-y text-center">
                 <div class="col-12">
-                    <vue-player default_lesson="{{ $lesson }}"></vue-player>
+                    <vue-player default_lesson="{{ $lesson }}"
+                    @if($nextLesson->id !== $lesson->id)
+                        next_lesson_url="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $nextLesson->slug ]) }}"
+                    @endif
+                    ></vue-player>
                     @if($prevLesson->id !== $lesson->id)
                         <a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $prevLesson->slug ]) }}" class="btn btn-info btn-lg pull-left">Prev Lesson</a>
                     @endif
