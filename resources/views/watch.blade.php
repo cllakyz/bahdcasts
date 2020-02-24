@@ -23,7 +23,7 @@
 
             <div class="row gap-y text-center">
                 <div class="col-12">
-                    <vue-player></vue-player>
+                    <vue-player default_lesson="{{ $lesson }}"></vue-player>
                 </div>
             </div>
         </div>
