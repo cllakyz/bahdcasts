@@ -11,6 +11,17 @@
 |
 */
 
+/*Route::get('/', function (){
+    //Redis::set('friend', 'momo');
+    //dd(Redis::get('friend'));
+
+    //Redis::lpush('frameworks', ['vuejs', 'laravel']);
+    //dd(Redis::lrange('frameworks', 0, -1));
+
+    //Redis::sadd('frontend-frameworks', ['angular', 'react']);
+    //dd(Redis::smembers('frontend-frameworks'));
+});*/
+
 Route::get('/', 'FrontendController@welcome')->name('index');
 
 Route::get('logout', function () {
