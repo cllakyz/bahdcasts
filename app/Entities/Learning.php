@@ -34,14 +34,25 @@ trait Learning
     }
 
     /**
-     * Completed lessons for a series
+     * Completed lessons count for a series
      *
      * @param Series $series
      * @return int
      */
     public function getNumberOfCompletedLessonsForASeries(Series $series)
     {
-        return count(Redis::smembers("user:{$this->id}:series:{$series->id}"));
+        return count($this->getCompletedLessonsForASeries($series));
+    }
+
+    /**
+     * Completed lessons for a series
+     *
+     * @param Series $series
+     * @return array
+     */
+    public function getCompletedLessonsForASeries(Series $series)
+    {
+        return Redis::smembers("user:{$this->id}:series:{$series->id}");
     }
 
     /**
@@ -53,5 +64,22 @@ trait Learning
     public function hasStartedSeries(Series $series)
     {
         return $this->getNumberOfCompletedLessonsForASeries($series) > 0;
+    }
+
+    /**
+     * Completed lessons for a series by collection
+     *
+     * @param Series $series
+     * @return Lesson
+     */
+    public function getCompletedLessons(Series $series)
+    {
+        $completedLessons = $this->getCompletedLessonsForASeries($series);
+
+        /*return collect($completedLessons)->map(function ($lessonId){
+            return Lesson::find($lessonId);
+        });*/
+
+        return Lesson::whereIn('id', $completedLessons)->get();
     }
 }
