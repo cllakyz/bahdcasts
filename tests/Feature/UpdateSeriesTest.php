@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Storage;
 use Tests\TestCase;
-use Bahdcasts\Series;
+use App\Series;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

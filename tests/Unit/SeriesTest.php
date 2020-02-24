@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Bahdcasts\Lesson;
-use Bahdcasts\Series;
+use App\Lesson;
+use App\Series;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SeriesTest extends TestCase

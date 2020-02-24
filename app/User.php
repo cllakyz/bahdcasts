@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Redis;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,8 @@ class User extends Authenticatable
     ];
 
     /**
+     * Is verified user ?
+     *
      * @return bool
      */
     public function isConfirmed()
@@ -36,6 +39,8 @@ class User extends Authenticatable
     }
 
     /**
+     * Verified user
+     *
      * @return bool
      */
     public function confirm()
@@ -44,8 +49,22 @@ class User extends Authenticatable
         return $this->save();
     }
 
+    /**
+     * User is a Admin ?
+     *
+     * @return bool
+     */
     public function isAdmin()
     {
         return in_array($this->email, config('bahdcasts.administrator'));
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @return bool|int
+     */
+    public function completeLesson(Lesson $lesson)
+    {
+        return Redis::sadd("user:{$this->id}:series:{$lesson->series->id}", $lesson->id);
     }
 }

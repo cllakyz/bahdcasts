@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Bahdcasts\User;
+use App\User;
 use Tests\TestCase;
-use Bahdcasts\Lesson;
+use App\Lesson;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class WatchSeriesTest extends TestCase

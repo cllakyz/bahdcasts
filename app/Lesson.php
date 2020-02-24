@@ -18,6 +18,9 @@ class Lesson extends Model
         return 'slug';
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function series()
     {
         return $this->belongsTo(Series::class);
