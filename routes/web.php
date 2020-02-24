@@ -21,14 +21,9 @@
     //Redis::sadd('frontend-frameworks', ['angular', 'react']);
     //dd(Redis::smembers('frontend-frameworks'));
 });*/
-
-Route::get('/', 'FrontendController@welcome')->name('index');
-
-Route::get('logout', function () {
-    auth()->logout();
-    return redirect('/');
-});
-
 Auth::routes();
-Route::get('register/confirm', 'ConfirmEmailController@index')->name('confirm-email');
+Route::get('/', 'FrontendController@welcome')->name('index');
+Route::get('logout', function () { auth()->logout(); return redirect('/'); });
 Route::get('home', 'HomeController@index')->name('home');
+Route::get('series/{series}', 'FrontendController@series')->name('frontend.series.show');
+Route::get('register/confirm', 'ConfirmEmailController@index')->name('confirm-email');

@@ -17,4 +17,15 @@ class FrontendController extends Controller
         $series = Series::all();
         return view('welcome', compact('series'));
     }
+
+    /**
+     * Series single page
+     *
+     * @param Series $series
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function series(Series $series)
+    {
+        return view('series', compact('series'));
+    }
 }
