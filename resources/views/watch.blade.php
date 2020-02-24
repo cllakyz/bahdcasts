@@ -20,11 +20,34 @@
 @section('content')
     <div class="section bg-grey">
         <div class="container">
-
+            @php
+                $nextLesson = $lesson->getNextLesson();
+                $prevLesson = $lesson->getPrevLesson();
+            @endphp
             <div class="row gap-y text-center">
                 <div class="col-12">
                     <vue-player default_lesson="{{ $lesson }}"></vue-player>
+                    @if($prevLesson->id !== $lesson->id)
+                        <a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $prevLesson->slug ]) }}" class="btn btn-info btn-lg pull-left">Prev Lesson</a>
+                    @endif
+                    @if($nextLesson->id !== $lesson->id)
+                        <a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $nextLesson->slug ]) }}" class="btn btn-info btn-lg pull-right">Next Lesson</a>
+                    @endif
                 </div>
+                @if($series->getOrderedLessons()->count() > 0)
+                    <div class="col-12">
+                        <ul class="list-group">
+                            @foreach($series->getOrderedLessons() as $l)
+                                <li class="list-group-item{{ $l->id == $lesson->id ? " active" : NULL }}">
+                                    {{--@if(auth()->user()->hasCompletedLesson($l))
+                                        <b><small>COMPLETED</small></b>
+                                    @endif--}}
+                                    <a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $l->slug]) }}" class="{{ $l->id == $lesson->id ? "text-white" : "text-dark" }}">{{ $l->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
