@@ -35,4 +35,14 @@ class Series extends Model
     public function getImagePathAttribute() {
         return asset('storage/' . $this->image_url);
     }
+
+    /**
+     * Get list lessons by ordering watch
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getOrderedLessons()
+    {
+        return $this->lessons()->orderBy('episode_number', 'asc')->get();
+    }
 }
