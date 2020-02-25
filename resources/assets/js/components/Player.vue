@@ -25,8 +25,10 @@
             displayVideoEndedAlert(){
                 Swal.fire('Yaaay ! You completed this lesson!')
                     .then(() => {
-                        if (typeof this.next_lesson_url !== "undefined"){
+                        if (this.next_lesson_url){
                             window.location = this.next_lesson_url;
+                        } else{
+                            Swal.close();
                         }
                     });
             }

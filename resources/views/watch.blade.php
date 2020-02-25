@@ -38,20 +38,20 @@
                         <a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $nextLesson->slug ]) }}" class="btn btn-info btn-lg pull-right">Next Lesson</a>
                     @endif
                 </div>
-                @if($series->getOrderedLessons()->count() > 0)
-                    <div class="col-12">
-                        <ul class="list-group">
-                            @foreach($series->getOrderedLessons() as $l)
-                                <li class="list-group-item{{ $l->id == $lesson->id ? " active" : NULL }}">
-                                    {{--@if(auth()->user()->hasCompletedLesson($l))
-                                        <b><small>COMPLETED</small></b>
-                                    @endif--}}
-                                    <a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $l->slug]) }}" class="{{ $l->id == $lesson->id ? "text-white" : "text-dark" }}">{{ $l->title }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                <div class="col-12">
+                    <ul class="list-group">
+                        @forelse($series->getOrderedLessons() as $l)
+                            <li class="list-group-item{{ $l->id == $lesson->id ? " active" : NULL }}">
+                                {{--@if(auth()->user()->hasCompletedLesson($l))
+                                    <b><small>COMPLETED</small></b>
+                                @endif--}}
+                                <a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $l->slug]) }}" class="{{ $l->id == $lesson->id ? "text-white" : "text-dark" }}">{{ $l->title }}</a>
+                            </li>
+                        @empty
+                            <li class="list-group-item text-center">No lessons yet.</li>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

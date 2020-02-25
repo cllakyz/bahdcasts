@@ -33097,7 +33097,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -33142,8 +33142,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Yaaay ! You completed this lesson!').then(function () {
-                if (typeof _this2.next_lesson_url !== "undefined") {
+                if (_this2.next_lesson_url) {
                     window.location = _this2.next_lesson_url;
+                } else {
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.close();
                 }
             });
         }
