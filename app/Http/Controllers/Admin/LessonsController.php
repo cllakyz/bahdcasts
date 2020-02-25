@@ -93,6 +93,6 @@ class LessonsController extends Controller
     public function destroy(Series $series, Lesson $lesson)
     {
         $lesson->delete();
-        return response()->json(['status' => 'OK']);
+        return response()->json(['status' => 'ok']);
     }
 }

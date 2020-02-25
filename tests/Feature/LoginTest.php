@@ -36,7 +36,7 @@ class LoginTest extends TestCase
             'password' => 'secret'
         ], ['X-Requested-With' => 'XMLHttpRequest'])->assertStatus(200)
             ->assertJson([
-                'status' => 'OK'
+                'status' => 'ok'
             ])->assertSessionHas('success', 'Successfully logged in.');
     }
 }

@@ -50,7 +50,7 @@ class LoginController extends Controller
     {
         session()->flash('success', 'Successfully logged in.');
         return response()->json([
-            'status' => 'OK'
+            'status' => 'ok'
         ]);
     }
 
