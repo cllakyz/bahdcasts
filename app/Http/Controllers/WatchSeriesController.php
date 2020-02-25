@@ -32,6 +32,12 @@ class WatchSeriesController extends Controller
         return view('watch', compact('series', 'lesson'));
     }
 
+    /**
+     * Complete lesson actions
+     *
+     * @param Lesson $lesson
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function completeLesson(Lesson $lesson)
     {
         auth()->user()->completeLesson($lesson);
