@@ -7,6 +7,8 @@
 <script>
     import Player from '@vimeo/player';
     import Swal from 'sweetalert2';
+    import Axios from 'axios';
+
     export default {
         name: "Player",
         props: ['default_lesson', 'next_lesson_url'],
@@ -18,7 +20,7 @@
         mounted() {
             const player = new Player('handstick');
             player.on('ended', () => {
-                this.displayVideoEndedAlert();
+                this.completeLesson();
             });
         },
         methods: {
@@ -31,6 +33,15 @@
                             Swal.close();
                         }
                     });
+            },
+            completeLesson(){
+                Axios.post(`series/complete-lesson/${this.lesson.slug}`)
+                    .then(resp => {
+                        this.displayVideoEndedAlert();
+                    })
+                    .catch(error => {
+                        window.handleErrors(error);
+                    })
             }
         }
     }
