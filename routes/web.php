@@ -26,8 +26,11 @@ Route::get('/', 'FrontendController@welcome')->name('index');
 Route::get('logout', function () { auth()->logout(); return redirect('/'); });
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('series/{series}', 'FrontendController@series')->name('series');
-Route::get('watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
-Route::get('series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
-Route::post('series/complete-lesson/{lesson}', 'WatchSeriesController@completeLesson')->name('series.complete');
 Route::get('profile/{user}', 'ProfilesController@index')->name('profile');
 Route::get('register/confirm', 'ConfirmEmailController@index')->name('confirm-email');
+
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
+    Route::get('series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
+    Route::post('series/complete-lesson/{lesson}', 'WatchSeriesController@completeLesson')->name('series.complete');
+});

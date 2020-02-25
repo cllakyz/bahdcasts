@@ -36,8 +36,11 @@
                     <ul class="topbar-nav nav">
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
                         @auth
-                            <li class="nav-item"><a class="nav-link" href="{{ route('series.index') }}">All Series</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('series.create') }}">Create Series</a></li>
+                            @admin
+                                <li class="nav-item"><a class="nav-link" href="{{ route('series.index') }}">All Series</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('series.create') }}">Create Series</a></li>
+                            @else
+                            @endadmin
                             <li class="nav-item"><a class="nav-link" href="{{ route('profile', auth()->user()->username) }}">Hey {{ auth()->user()->name }}</a></li>
                         @else
                             <li class="nav-item"><a class="nav-link" href="javascript:;" data-toggle="modal" data-target="#loginModal">Login</a></li>
