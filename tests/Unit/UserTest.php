@@ -6,7 +6,6 @@ use Redis;
 use Tests\TestCase;
 use App\User;
 use App\Lesson;
-use App\Series;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
@@ -116,7 +115,7 @@ class UserTest extends TestCase
         $startedSeries = $user->seriesBeingWatched();
         // collection of series
         $this->assertInstanceOf(\Illuminate\Support\Collection::class, $startedSeries);
-        $this->assertInstanceOf(Series::class, $startedSeries->random());
+        $this->assertInstanceOf(\App\Series::class, $startedSeries->random());
         $idsOfStartedSeries = $startedSeries->pluck('id')->all();
 
         $this->assertTrue(
