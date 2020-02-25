@@ -49,9 +49,11 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         session()->flash('success', 'Successfully logged in.');
-        return response()->json([
-            'status' => 'ok'
-        ]);
+        if($request->ajax()){
+            return response()->json([
+                'status' => 'ok'
+            ]);
+        }
     }
 
     /**
@@ -64,6 +66,8 @@ class LoginController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        throw new AuthFailedException;
+        if($request->ajax()){
+            throw new AuthFailedException;
+        }
     }
 }
