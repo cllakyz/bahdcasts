@@ -42,9 +42,9 @@
                     <ul class="list-group">
                         @forelse($series->getOrderedLessons() as $l)
                             <li class="list-group-item{{ $l->id == $lesson->id ? " active" : NULL }}">
-                                {{--@if(auth()->user()->hasCompletedLesson($l))
+                                @if(auth()->user()->hasCompletedLesson($l))
                                     <b><small>COMPLETED</small></b>
-                                @endif--}}
+                                @endif
                                 <a href="{{ route('series.watch', ['series' => $series->slug, 'lesson' => $l->slug]) }}" class="{{ $l->id == $lesson->id ? "text-white" : "text-dark" }}">{{ $l->title }}</a>
                             </li>
                         @empty

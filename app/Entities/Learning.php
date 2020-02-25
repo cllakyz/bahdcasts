@@ -82,4 +82,14 @@ trait Learning
 
         return Lesson::whereIn('id', $completedLessons)->get();
     }
+
+    /**
+     * lesson is completed?
+     * @param Lesson $lesson
+     * @return bool
+     */
+    public function hasCompletedLesson(Lesson $lesson)
+    {
+        return in_array($lesson->id, $this->getCompletedLessonsForASeries($lesson->series));
+    }
 }

@@ -31,4 +31,12 @@ class WatchSeriesController extends Controller
     {
         return view('watch', compact('series', 'lesson'));
     }
+
+    public function completeLesson(Lesson $lesson)
+    {
+        auth()->user()->completeLesson($lesson);
+        return response()->json([
+            'status' => 'ok'
+        ]);
+    }
 }
