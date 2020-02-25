@@ -119,4 +119,20 @@ trait Learning
             return Series::find($id);
         })->filter();
     }
+
+    /**
+     * Get total number of lessons user has ever completed
+     *
+     * @return int
+     */
+    public function getTotalNumberOfCompletedLessons()
+    {
+        $keys = Redis::keys("user:{$this->id}:series:*");
+        $result = 0;
+        foreach ($keys as $key):
+            $result += count(Redis::smembers($key));
+        endforeach;
+
+        return $result;
+    }
 }
