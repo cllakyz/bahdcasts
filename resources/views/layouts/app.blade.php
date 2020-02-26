@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/core.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/thesaas.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -89,6 +90,7 @@
     <script src="{{ asset('assets/js/core.min.js') }}"></script>
     <script src="{{ asset('assets/js/thesaas.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    @yield('scripts')
     <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 </html>

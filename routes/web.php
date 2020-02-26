@@ -21,6 +21,9 @@
     //Redis::sadd('frontend-frameworks', ['angular', 'react']);
     //dd(Redis::smembers('frontend-frameworks'));
 });*/
+
+Route::get('subscribe', function () {return view('subscribe'); });
+
 Auth::routes();
 Route::get('/', 'FrontendController@welcome')->name('index');
 Route::get('logout', function () { auth()->logout(); return redirect('/'); });
