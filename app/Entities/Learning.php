@@ -135,4 +135,16 @@ trait Learning
 
         return $result;
     }
+
+    /**
+     * Get the next lesson the user should watch
+     * @param Series $series
+     * @return mixed
+     */
+    public function getNextLessonToWatch(Series $series)
+    {
+        $lessonIds = $this->getCompletedLessonsForASeries($series);
+        $lessonId = end($lessonIds);
+        return Lesson::find($lessonId)->getNextLesson();
+    }
 }
