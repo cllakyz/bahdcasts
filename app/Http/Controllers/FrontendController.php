@@ -28,4 +28,14 @@ class FrontendController extends Controller
     {
         return view('series', compact('series'));
     }
+
+    /**
+     * Show all the series
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showAllSeries() {
+        $series = Series::all();
+        return view('all-series', compact('series'));
+    }
 }
