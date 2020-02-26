@@ -5,10 +5,11 @@ namespace App;
 use App\Entities\Learning;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Learning;
+    use Notifiable, Learning, Billable;
 
     /**
      * The attributes that are mass assignable.
