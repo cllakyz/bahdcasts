@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/core.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/thesaas.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <script type="text/javascript">
+        const APP_URL = "{{ env('APP_URL') }}";
+    </script>
     @yield('styles')
 </head>
 <body>
@@ -28,7 +31,7 @@
 
                 <div class="topbar-left">
                     <button class="topbar-toggler">&#9776;</button>
-                    <a class="topbar-brand" href="/">
+                    <a class="topbar-brand" href="{{ route('index') }}">
                         BAHDCASTS
                     </a>
                 </div>
