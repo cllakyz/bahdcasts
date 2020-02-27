@@ -22,8 +22,6 @@
     //dd(Redis::smembers('frontend-frameworks'));
 });*/
 
-Route::get('subscribe', function () {return view('subscribe'); });
-
 Auth::routes();
 Route::get('/', 'FrontendController@welcome')->name('index');
 Route::get('logout', function () { auth()->logout(); return redirect('/'); });
@@ -34,6 +32,8 @@ Route::get('profile/{user}', 'ProfilesController@index')->name('profile');
 Route::get('register/confirm', 'ConfirmEmailController@index')->name('confirm-email');
 
 Route::group(['middleware' => 'auth'], function (){
+    Route::get('subscribe', 'SubscriptionsController@showSubscriptionForm')->name('subscribe');
+    Route::post('subscribe', 'SubscriptionsController@subscribe')->name('subscribe.post');
     Route::get('watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
     Route::get('series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
     Route::post('series/complete-lesson/{lesson}', 'WatchSeriesController@completeLesson')->name('series.complete');

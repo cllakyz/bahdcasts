@@ -36,10 +36,13 @@ class WatchSeriesController extends Controller
      *
      * @param Series $series
      * @param Lesson $lesson
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return mixed
      */
     public function showLesson(Series $series, Lesson $lesson)
     {
+        if ($lesson->premium && !auth()->user()->subscribed('monthly') && !auth()->user()->subscribed('yearly')) {
+            return redirect()->route('subscribe');
+        }
         return view('watch', compact('series', 'lesson'));
     }
 

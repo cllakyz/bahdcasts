@@ -6,12 +6,14 @@
 </template>
 
 <script>
+    import Axios from 'axios';
+    import Swal from 'sweetalert2';
+
     export default {
         name: "Stripe",
         props: ['email'],
         data(){
             return{
-                plan: '',
                 amount: 0,
                 handler: null
             }
@@ -22,7 +24,16 @@
                 image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
                 locale: 'auto',
                 token(token) {
-
+                    Axios.post('subscribe', {
+                        stripeToken: token.id,
+                        plan: window.stripePlan
+                    })
+                    .then(resp => {
+                        console.log(resp);
+                    })
+                    .catch(error => {
+                        window.handleErrors(error);
+                    });
                 }
             });
         },

@@ -32642,6 +32642,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
 
 
 
@@ -32653,6 +32656,7 @@ var Lesson = function Lesson(lesson) {
     this.description = lesson.description || '';
     this.episode_number = lesson.episode_number || '';
     this.video_id = lesson.video_id || '';
+    this.premium = lesson.premium || false;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32834,6 +32838,52 @@ var render = function() {
                   }
                 }
               })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.lesson.premium,
+                    expression: "lesson.premium"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.lesson.premium)
+                    ? _vm._i(_vm.lesson.premium, null) > -1
+                    : _vm.lesson.premium
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.lesson.premium,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(_vm.lesson, "premium", $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.lesson,
+                            "premium",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.lesson, "premium", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(
+                " Premium: " + _vm._s(_vm.lesson.premium) + "\n                "
+              )
             ])
           ]),
           _vm._v(" "),
@@ -38485,7 +38535,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38496,6 +38546,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
 //
@@ -38504,12 +38558,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Stripe",
     props: ['email'],
     data: function data() {
         return {
-            plan: '',
             amount: 0,
             handler: null
         };
@@ -38519,7 +38575,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             key: 'pk_test_SKd1xNvf6QPxPBDOTHcev7QW00BOg7SQQp',
             image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
             locale: 'auto',
-            token: function token(_token) {}
+            token: function token(_token) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('subscribe', {
+                    stripeToken: _token.id,
+                    plan: window.stripePlan
+                }).then(function (resp) {
+                    console.log(resp);
+                }).catch(function (error) {
+                    window.handleErrors(error);
+                });
+            }
         });
     },
 
