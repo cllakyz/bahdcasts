@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta Tags -->
+    {!! SEO::generate() !!}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
     <link rel="icon" href="{{ asset('assets/img/favicon.png') }}">

@@ -43,6 +43,7 @@ class WatchSeriesController extends Controller
         if ($lesson->premium && !auth()->user()->subscribed('monthly') && !auth()->user()->subscribed('yearly')) {
             return redirect()->route('subscribe');
         }
+        $this->setSeo($series->title, $series->description);
         return view('watch', compact('series', 'lesson'));
     }
 

@@ -14,6 +14,7 @@ class FrontendController extends Controller
      */
     public function welcome()
     {
+        $this->setSeo('Bahdcasts', 'The best web development training');
         $series = Series::all();
         return view('welcome', compact('series'));
     }
@@ -26,6 +27,7 @@ class FrontendController extends Controller
      */
     public function series(Series $series)
     {
+        $this->setSeo($series->title, $series->description);
         return view('series', compact('series'));
     }
 
@@ -35,6 +37,7 @@ class FrontendController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showAllSeries() {
+        $this->setSeo('Bahdcasts', 'The best web development training');
         $series = Series::all();
         return view('all-series', compact('series'));
     }

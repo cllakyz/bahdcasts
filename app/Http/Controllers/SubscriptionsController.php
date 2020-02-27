@@ -14,6 +14,7 @@ class SubscriptionsController extends Controller
      */
     public function showSubscriptionForm()
     {
+        $this->setSeo('Bahdcasts', 'The best web development training');
         return view('subscribe');
     }
 

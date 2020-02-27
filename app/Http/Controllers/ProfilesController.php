@@ -16,6 +16,7 @@ class ProfilesController extends Controller
      */
     public function index(User $user)
     {
+        $this->setSeo('Bahdcasts', 'The best web development training');
         $series = $user->seriesBeingWatched();
         return view('profile', compact('user', 'series'));
     }

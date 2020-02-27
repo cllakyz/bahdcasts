@@ -16,6 +16,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
+        $this->setSeo('Bahdcasts', 'The best web development training');
         $series = Series::all();
         return view('admin.series.index', compact('series'));
     }
@@ -27,6 +28,7 @@ class SeriesController extends Controller
      */
     public function create()
     {
+        $this->setSeo('Bahdcasts', 'The best web development training');
         return view('admin.series.create');
     }
 
@@ -49,6 +51,7 @@ class SeriesController extends Controller
      */
     public function show(Series $series)
     {
+        $this->setSeo($series->title, $series->description);
         return view('admin.series.show', compact('series'));
     }
 
@@ -60,6 +63,7 @@ class SeriesController extends Controller
      */
     public function edit(Series $series)
     {
+        $this->setSeo($series->title, $series->description);
         return view('admin.series.edit', compact('series'));
     }
 
