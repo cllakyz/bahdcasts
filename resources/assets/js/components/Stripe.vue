@@ -24,15 +24,16 @@
                 image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
                 locale: 'auto',
                 token(token) {
+                    Swal.fire({ text: 'Please wait while we subscribe you to a plan ...', buttons:false });
                     Axios.post('subscribe', {
                         stripeToken: token.id,
                         plan: window.stripePlan
                     })
                     .then(resp => {
-                        console.log(resp);
-                    })
-                    .catch(error => {
-                        window.handleErrors(error);
+                        Swal.fire({ text: 'Successfully subscribed', icon: 'success' })
+                            .then(() => {
+                                window.history.back();
+                            });
                     });
                 }
             });

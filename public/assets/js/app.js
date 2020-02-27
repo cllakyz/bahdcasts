@@ -38535,7 +38535,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38576,13 +38576,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
             locale: 'auto',
             token: function token(_token) {
+                __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire({ text: 'Please wait while we subscribe you to a plan ...', buttons: false });
                 __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('subscribe', {
                     stripeToken: _token.id,
                     plan: window.stripePlan
                 }).then(function (resp) {
-                    console.log(resp);
-                }).catch(function (error) {
-                    window.handleErrors(error);
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire({ text: 'Successfully subscribed', icon: 'success' }).then(function () {
+                        window.history.back();
+                    });
                 });
             }
         });
