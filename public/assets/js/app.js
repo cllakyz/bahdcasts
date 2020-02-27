@@ -4602,7 +4602,8 @@ window.axios = __webpack_require__(1);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //window.axios.defaults.baseURL = process.env.MIX_APP_URL;
-window.axios.defaults.baseURL = window.APP_URL;
+window.axios.defaults.baseURL = APP_URL;
+console.log(window.axios.defaults.baseURL);
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
