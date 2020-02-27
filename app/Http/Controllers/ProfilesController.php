@@ -50,4 +50,15 @@ class ProfilesController extends Controller
         session()->flash('success', 'Your profile updated successfully.');
         return redirect()->route('profile', $user->username);
     }
+
+    public function updateCard(Request $request) {
+        $this->validate($request, [
+            'stripeToken' => 'required|string'
+        ]);
+        $token = $request->stripeToken;
+        $user = auth()->user();
+
+        $user->updateCard($token);
+        return response()->json('ok');
+    }
 }

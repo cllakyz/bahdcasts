@@ -33,6 +33,7 @@ Route::get('register/confirm', 'ConfirmEmailController@index')->name('confirm-em
 
 Route::group(['middleware' => 'auth'], function (){
     Route::post('profile/{user}', 'ProfilesController@updateProfile')->name('profile.update');
+    Route::post('card/update', 'ProfilesController@updateCard')->name('card.update');
     Route::get('subscribe', 'SubscriptionsController@showSubscriptionForm')->name('subscribe');
     Route::post('subscribe', 'SubscriptionsController@subscribe')->name('subscribe.post');
     Route::post('subscription/change', 'SubscriptionsController@change')->name('subscriptions.change');

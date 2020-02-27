@@ -162,3 +162,7 @@
         </section>
     @endif
 @stop
+
+@section('scripts')
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+@endsection
