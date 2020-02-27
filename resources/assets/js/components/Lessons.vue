@@ -25,7 +25,9 @@
 </template>
 
 <script>
-    import axis from 'axios';
+    import Axios from 'axios';
+    import Swal from "sweetalert2";
+
     export default {
         name: "Lessons",
         props: ['default_lessons', 'series_id'],
@@ -42,20 +44,29 @@
                 this.$emit('create_new_lesson', this.series_id);
             },
             deleteLesson(slug, key){
-                console.log(slug, typeof slug);
-                if(confirm('Are you sure wanna delete?')){
-                    axios.delete(`admin/${this.series_id}/lessons/${slug}`)
-                        .then(resp => {
-                            window.noty({
-                                message: 'Lesson deleted successfully',
-                                type: 'success'
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Are you sure wanna delete?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        Axios.delete(`admin/${this.series_id}/lessons/${slug}`)
+                            .then(resp => {
+                                window.noty({
+                                    message: 'Lesson deleted successfully',
+                                    type: 'success'
+                                });
+                                this.lessons.splice(key, 1);
+                            })
+                            .catch(error => {
+                                window.handleErrors(error)
                             });
-                            this.lessons.splice(key, 1);
-                        })
-                        .catch(error => {
-                            window.handleErrors(error)
-                        });
-                }
+                    }
+                });
             },
             editLesson(lesson){
                 this.$emit('edit_lesson', lesson);

@@ -31906,35 +31906,21 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
 //
 //
 //
 //
-//
-//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Noty",
-    data: function data() {
-        return {
-            notification: {}
-        };
-    },
     created: function created() {
-        var _this = this;
-
         window.events.$on('notification', function (payload) {
-            _this.notification = payload;
-            setTimeout(function () {
-                _this.notification = {};
-            }, 2000);
+            __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default.a.fire(payload.message);
         });
-    },
-
-    computed: {
-        type: function type() {
-            return "alert-" + this.notification.type;
-        }
     }
 });
 
@@ -31946,26 +31932,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.notification.message,
-          expression: "notification.message"
-        }
-      ],
-      staticClass: "alert alert-noty",
-      class: _vm.type
-    },
-    [
-      _c("p", { staticClass: "text-center" }, [
-        _vm._v(_vm._s(_vm.notification.message))
-      ])
-    ]
-  )
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -32424,34 +32391,36 @@ exports.push([module.i, "\n.container[data-v-69a580d4]{ color: black; font-weigh
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32473,18 +32442,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         deleteLesson: function deleteLesson(slug, key) {
             var _this = this;
 
-            console.log(slug, typeof slug === 'undefined' ? 'undefined' : _typeof(slug));
-            if (confirm('Are you sure wanna delete?')) {
-                axios.delete('admin/' + this.series_id + '/lessons/' + slug).then(function (resp) {
-                    window.noty({
-                        message: 'Lesson deleted successfully',
-                        type: 'success'
+            __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire({
+                title: 'Are you sure?',
+                text: "Are you sure wanna delete?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("admin/" + _this.series_id + "/lessons/" + slug).then(function (resp) {
+                        window.noty({
+                            message: 'Lesson deleted successfully',
+                            type: 'success'
+                        });
+                        _this.lessons.splice(key, 1);
+                    }).catch(function (error) {
+                        window.handleErrors(error);
                     });
-                    _this.lessons.splice(key, 1);
-                }).catch(function (error) {
-                    window.handleErrors(error);
-                });
-            }
+                }
+            });
         },
         editLesson: function editLesson(lesson) {
             this.$emit('edit_lesson', lesson);
