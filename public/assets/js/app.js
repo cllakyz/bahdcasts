@@ -38576,7 +38576,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
             locale: 'auto',
             token: function token(_token) {
-                __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire({ text: 'Please wait while we subscribe you to a plan ...', buttons: false });
+                __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire({ text: 'Please wait while we subscribe you to a plan ...', showConfirmButton: false });
                 __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('subscribe', {
                     stripeToken: _token.id,
                     plan: window.stripePlan

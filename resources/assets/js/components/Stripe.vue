@@ -24,7 +24,7 @@
                 image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
                 locale: 'auto',
                 token(token) {
-                    Swal.fire({ text: 'Please wait while we subscribe you to a plan ...', buttons:false });
+                    Swal.fire({ text: 'Please wait while we subscribe you to a plan ...', showConfirmButton: false });
                     Axios.post('subscribe', {
                         stripeToken: token.id,
                         plan: window.stripePlan

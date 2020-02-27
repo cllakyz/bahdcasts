@@ -29,6 +29,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $with = [
+        'subscriptions'
+    ];
+
     /**
      * Get the route key for the model.
      *

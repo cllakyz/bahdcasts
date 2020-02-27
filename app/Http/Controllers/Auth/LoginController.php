@@ -54,6 +54,7 @@ class LoginController extends Controller
                 'status' => 'ok'
             ]);
         }
+        return redirect()->route('index');
     }
 
     /**

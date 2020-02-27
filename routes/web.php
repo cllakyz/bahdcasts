@@ -32,8 +32,10 @@ Route::get('profile/{user}', 'ProfilesController@index')->name('profile');
 Route::get('register/confirm', 'ConfirmEmailController@index')->name('confirm-email');
 
 Route::group(['middleware' => 'auth'], function (){
+    Route::post('profile/{user}', 'ProfilesController@updateProfile')->name('profile.update');
     Route::get('subscribe', 'SubscriptionsController@showSubscriptionForm')->name('subscribe');
     Route::post('subscribe', 'SubscriptionsController@subscribe')->name('subscribe.post');
+    Route::post('subscription/change', 'SubscriptionsController@change')->name('subscriptions.change');
     Route::get('watch-series/{series}', 'WatchSeriesController@index')->name('series.learning');
     Route::get('series/{series}/lesson/{lesson}', 'WatchSeriesController@showLesson')->name('series.watch');
     Route::post('series/complete-lesson/{lesson}', 'WatchSeriesController@completeLesson')->name('series.complete');
