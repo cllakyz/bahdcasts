@@ -24,7 +24,7 @@
 
 Auth::routes();
 Route::get('/', 'FrontendController@welcome')->name('index');
-Route::get('logout', function () { auth()->logout(); return redirect('/'); });
+Route::get('logout', function () { auth()->logout(); return redirect('/'); })->name('logout');
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('series', 'FrontendController@showAllseries')->name('all-series');
 Route::get('series/{series}', 'FrontendController@series')->name('series');

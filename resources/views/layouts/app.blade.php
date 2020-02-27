@@ -44,9 +44,11 @@
                             <li class="nav-item"><a href="{{ route('all-series') }}" class="nav-link">All Series</a></li>
                             @endadmin
                             <li class="nav-item"><a class="nav-link" href="{{ route('profile', auth()->user()->username) }}">Hey {{ auth()->user()->name }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">Logout</a></li>
                         @else
-                                <li class="nav-item"><a href="{{ route('all-series') }}" class="nav-link">All Series</a></li>
+                            <li class="nav-item"><a href="{{ route('all-series') }}" class="nav-link">All Series</a></li>
                             <li class="nav-item"><a class="nav-link" href="javascript:;" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('register')}}">Register</a></li>
                         @endauth
                     </ul>
                 </div>
